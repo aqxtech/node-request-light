@@ -108,7 +108,7 @@ export function xhr(options: XHROptions): Promise<XHRResponse> {
 
 		return Promise.reject<XHRResponse>({
 			responseText: message,
-      status: 404
+			status: 404
 		});
 	});
 }
