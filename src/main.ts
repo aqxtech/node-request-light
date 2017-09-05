@@ -34,6 +34,7 @@ export interface XHROptions {
 export interface XHRResponse {
 	responseText: string;
 	status: number;
+	headers?: any;
 }
 
 export interface XHRRequest {
@@ -86,7 +87,8 @@ export function xhr(options: XHROptions): Promise<XHRResponse> {
 
 			let response: XHRResponse = {
 				responseText: data.join(''),
-				status: res.statusCode
+				status: res.statusCode,
+				headers: res.headers
 			};
 
 			if ((res.statusCode >= 200 && res.statusCode < 300) || res.statusCode === 1223) {
@@ -106,7 +108,7 @@ export function xhr(options: XHROptions): Promise<XHRResponse> {
 
 		return Promise.reject<XHRResponse>({
 			responseText: message,
-			status: 404
+      status: 404
 		});
 	});
 }
